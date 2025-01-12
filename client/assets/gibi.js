@@ -1,7 +1,16 @@
-var nomeDoGibi = document.getElementById('textGibi').value;
 var buttonCheck = document.getElementById('check');
 
-buttonCheck.addEventListener('click', async () =>{
-   var listaDeGibis = await fetch('http://localhost:3000/database');
-   
+buttonCheck.addEventListener('click', () =>{
+   let nomeDoGibi = document.getElementById('textGibi').value;
+
+   if (nomeDoGibi != '') {
+      alert('Este camp')
+   }
+
+   var listaDeGibis = fetch('http://localhost:3000/database').then((result) => result.json())
+   .then((dado) =>{
+      console.log(dado);
+      return dado
+   })
+   console.log(listaDeGibis)
 })
