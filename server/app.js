@@ -43,12 +43,23 @@ app.get('/', (req, res) => {
 })
 
 app.get('/database', async(req, res) => {///
-  try{
-      var resp = await getGibi();///
-      res.json(resp)//
-  } catch(err){
-      res.send(`Algo deu erradoooo! ${err.message}`)///
-  }
+    const nomes_do_gibi = req.query.name;
+    const temGibiOuNao = await new Promise((resolve, reject) => {
+      con.query(`select nome from nomes_de_gibi where nome = "${nomes_do_gibi}"`, function(err, result){
+        if (err){
+          console.log(`ERRO : ${err.message}`)
+          return reject(err);
+        } else{
+          resolve(result)
+        }
+      })
+    })
+    if (temGibiOuNao == ''){
+      res.json('nao tem o gibi, pode comprar')
+    } else if (temGibiOuNao[0].nome == nomes_do_gibi){
+      res.json('tem o gibi')
+    }
+    
 })
 
 

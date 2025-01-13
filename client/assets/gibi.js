@@ -1,16 +1,19 @@
 var buttonCheck = document.getElementById('check');
 
-buttonCheck.addEventListener('click', () =>{
+buttonCheck.addEventListener('click',() =>{
    let nomeDoGibi = document.getElementById('textGibi').value;
+   console.log(nomeDoGibi)
 
-   if (nomeDoGibi != '') {
-      alert('Este camp')
-   }
-
-   var listaDeGibis = fetch('http://localhost:3000/database').then((result) => result.json())
+   if (nomeDoGibi == '') {
+      alert('Este campo é obrigatorio')
+   } else{
+      var listaDeGibis = fetch(`http://localhost:3000/database?name=${nomeDoGibi}`).then((result) => result.json())
    .then((dado) =>{
       console.log(dado);
       return dado
    })
-   console.log(listaDeGibis)
+   let resposta = document.createElement('p');
+   resposta.textContent = `${listaDeGibis}`
+   }
+
 })
