@@ -62,20 +62,22 @@ app.get('/database', async (req, res) => {///
 
 })
 
-// app.get('/addgibi', async (req, res) => {
-//   const nome_do_novo_gibi = req.query
-//   const promisse = await new Promise((resolve, reject) => {
-//     con.query(`insert into nomes_de_gibi ("nome", "personagem") values ("${nome_do_novo_gibi.nome}","${nome_do_novo_gibi.personagem}")`, function (err, result) {
-//       if (err) {
-//         res.send('Deu errado')
-//         return reject(err)
-//       } else {
-//         resolve(result)
-//         res.send('Deu certo')
-//       }
-//     })//fim da query
-//   })//fim da promisse
-// })
+app.get('/addgibi', async (req, res) => {
+  const nome_do_novo_gibi = req.query.nome
+  const nome_do_personagem_do_novo_gibi = req.query.personagem
+  const promisse = await new Promise((resolve, reject) => {
+    con.query(`insert into nomes_de_gibi (nome, personagem) values ("${nome_do_novo_gibi}","${nome_do_personagem_do_novo_gibi}")`, function (err, result) {
+      
+      if (err) {
+        res.json("message : 'deu errado'")
+        return reject(err)
+      } else {
+        res.json("message : 'deu certo'")
+        resolve(result)
+      }
+    })//fim da query
+  })//fim da promisse
+})
 
 
 app.listen(3000, (err) => {
