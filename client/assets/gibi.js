@@ -1,39 +1,31 @@
 var buttonCheck = document.getElementById('check');
 var addButton = document.querySelector('.add');
+var eraserButton = document.querySelector('.eraserButton')
+
+eraserButton.addEventListener('click', () => {
+   //INPUT
+   label_nome.removeChild(inputAdd_nome)// remove input nome a label nome
+   label_personagem.removeChild(inputAdd_personagem)// remove input a label personagem
+
+   //ERASER BUTTON
+   div_add.removeChild(eraserButtonDiv)
+
+   //LABEL
+   div_add.removeChild(label_nome);//remove label nome
+   div_add.removeChild(label_personagem);// remove label personagem
+
+   //BUTTON ADD
+   div_add.removeChild(addButton);// remove botao
+   addButton.classList.remove('addButton')
+   addButton.classList.add('add')
+   addButton.textContent = '+'
+   addButton.addEventListener('click', createFormAdd)
+   document.body.appendChild(addButton)
+})
 
 const createFormAdd = () => {
-   var div_add = document.createElement('div');//cria div
-   div_add.classList.add('addDiv');
+   
 
-   var label_nome = document.createElement('label');//cria label nome
-   label_nome.textContent = 'Nome do Gibi';
-
-   var inputAdd_nome = document.createElement('input')//cria input personagem
-   inputAdd_nome.classList.add('addInput');
-
-
-   var label_personagem = document.createElement('label');//cria label personagem
-   label_personagem.textContent = 'Nome do Personagem';
-
-   var inputAdd_personagem = document.createElement('input'); // cria input personagem
-   inputAdd_personagem.classList.add('addInput');
-
-
-
-   label_nome.appendChild(inputAdd_nome)// adicionar input nome a label nome
-   label_personagem.appendChild(inputAdd_personagem)// adicionar input a label personagem
-
-
-   addButton.classList.remove('add'); // Modifica o botao q cria esse formulario e transforma em outro botao
-   addButton.classList.add('addButton');
-   addButton.textContent = 'ADICIONAR'
-
-   var eraserButtonDiv = document.createElement('div'); // cria a div do eraserButton
-   eraserButtonDiv.classList.add('eraserButtonDiv')
-
-   var eraserButton = document.createElement('button') // cria o botao de sair do form
-   eraserButton.textContent = 'X';
-   eraserButton.classList.add('eraserButton');
 
    eraserButton.addEventListener('click', () => {
       //INPUT
