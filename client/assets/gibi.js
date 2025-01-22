@@ -1,92 +1,52 @@
-var buttonCheck = document.getElementById('check');
-var addButton = document.querySelector('.add');
-var eraserButton = document.querySelector('.eraserButton')
+// CRIAÇÃO E REMOÇÃO DO FORMULARIO
 
-eraserButton.addEventListener('click', () => {
-   //INPUT
-   label_nome.removeChild(inputAdd_nome)// remove input nome a label nome
-   label_personagem.removeChild(inputAdd_personagem)// remove input a label personagem
+var form_Add_Box = document.querySelector('.add-gibi-Div-box')//A section do formulario
+var formAdd = document.querySelector('.add-gibi-Div');//O formulario
 
-   //ERASER BUTTON
-   div_add.removeChild(eraserButtonDiv)
+var button_Add_Gibi = document.querySelector('.button-add-gibi')
+var eraserButton = document.querySelector('.eraser-Button');
+form_Add_Box.removeChild(formAdd);
 
-   //LABEL
-   div_add.removeChild(label_nome);//remove label nome
-   div_add.removeChild(label_personagem);// remove label personagem
 
-   //BUTTON ADD
-   div_add.removeChild(addButton);// remove botao
-   addButton.classList.remove('addButton')
-   addButton.classList.add('add')
-   addButton.textContent = '+'
-   addButton.addEventListener('click', createFormAdd)
-   document.body.appendChild(addButton)
-})
+// FUNÇÃO QUE BOTA O FORMULARIO NA TELA 
 
+var button_form = document.querySelector('.button-Form');//botao que 'cria' o Formulario
 const createFormAdd = () => {
-   
-
-
-   eraserButton.addEventListener('click', () => {
-      //INPUT
-      label_nome.removeChild(inputAdd_nome)// remove input nome a label nome
-      label_personagem.removeChild(inputAdd_personagem)// remove input a label personagem
-
-      //ERASER BUTTON
-      div_add.removeChild(eraserButtonDiv)
-
-      //LABEL
-      div_add.removeChild(label_nome);//remove label nome
-      div_add.removeChild(label_personagem);// remove label personagem
-
-      //BUTTON ADD
-      div_add.removeChild(addButton);// remove botao
-      addButton.classList.remove('addButton')
-      addButton.classList.add('add')
-      addButton.textContent = '+'
-      addButton.addEventListener('click', createFormAdd)
-      document.body.appendChild(addButton)
-
-      // MAIN DIV
-      document.body.removeChild(div_add);// remove a div no body
-   })
-
-   eraserButtonDiv.appendChild(eraserButton) // adicionar o eraserButton a div dele
-
-
-
-   document.body.appendChild(div_add);// coloca a div no body
-   div_add.appendChild(eraserButtonDiv)
-   div_add.appendChild(label_nome);//add label nome
-   div_add.appendChild(label_personagem);// add label personagem
-   div_add.appendChild(addButton);// add botao
-
-   addButton.removeEventListener('click', createFormAdd);//tira antiga função do botao
-
-   addButton.addEventListener('click', (err) => { // add nova funçao do botao
-      if (inputAdd_nome.value != '' || inputAdd_personagem != '') {
-         let result = fetch(`http://localhost:3000/addgibi?nome=${inputAdd_nome.value}&personagem=${inputAdd_personagem.value}`)
-            .then((result) => result.json()).then((dado) => {
-               console.log(dado)
-               return dado
-            })
-         if (err) {
-            console.log(err)
-         } else {
-            console.log('deu certo', result)
-         }
-      }
-   })
+   form_Add_Box.appendChild(formAdd)
 }
+button_form.addEventListener('click', createFormAdd)
 
 
-addButton.addEventListener('click', createFormAdd)
+// ADICIONA OS GIBIS
+
+const adicionar_gibi = () => { 
+   let inputAdd_nome = document.getElementById('input-add-name')
+   let inputAdd_personagem = document.getElementById('input-add-personagem')
+
+   if (inputAdd_nome.value != '' && inputAdd_personagem != '') {
+      let result = fetch(`http://localhost:3000/addgibi?nome=${inputAdd_nome.value}&personagem=${inputAdd_personagem.value}`)
+         .then((result) => result.json()).then((dado) => {
+            console.log(dado)
+            return dado
+         }).catch((err) => {
+            console.err(err)
+         })
+
+   }
+}
+button_Add_Gibi.addEventListener('click', adicionar_gibi)
 
 
-buttonCheck.addEventListener('click', () => {
+// TIRA O FORMULARIO
+eraserButton.addEventListener('click', () => { form_Add_Box.removeChild(formAdd); })
+
+
+// VERIFICA SE TEM OS GIBIS
+var button_Check = document.getElementById('button-check');//botao que verifica se tem o gibi
+const verifica_gibi = () => {
    let resposta = document.createElement('p');
    resposta.classList.add('resposta');
-   var nomeDoGibi = document.getElementById('textGibi').value;
+   var nomeDoGibi = document.getElementById('input-textGibi').value;
 
 
    if (nomeDoGibi == '') {
@@ -100,4 +60,10 @@ buttonCheck.addEventListener('click', () => {
             return dado
          })
    }
-})
+}
+button_Check.addEventListener('click', verifica_gibi)
+
+
+
+
+
