@@ -34,7 +34,7 @@ const adicionar_gibi = () => {
 
    }
 }
-button_Add_Gibi.addEventListener('click', adicionar_gibi)
+button_Add_Gibi.addEventListener('click', adicionar_gibi) //
 
 
 // TIRA O FORMULARIO
