@@ -1,6 +1,6 @@
 // CRIAÇÃO E REMOÇÃO DO FORMULARIO
 
-var form_Add_Box = document.querySelector('.add-gibi-Div-box')//A section do formulario
+var form_Add_Box = document.querySelector('.add-gibi-Div-box')// A section do formulario
 var formAdd = document.querySelector('.add-gibi-Div');//O formulario
 
 var button_Add_Gibi = document.querySelector('.button-add-gibi')
