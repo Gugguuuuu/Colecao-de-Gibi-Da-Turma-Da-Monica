@@ -65,23 +65,40 @@ app.get('/database', async (req, res) => {///
 app.get('/addgibi', async (req, res) => {
   const nome_do_novo_gibi = req.query.nome
   const nome_do_personagem_do_novo_gibi = req.query.personagem
-  const promisse = await new Promise((resolve, reject) => {
-    con.query(`insert into nomes_de_gibi (nome, personagem) values ("${nome_do_novo_gibi}","${nome_do_personagem_do_novo_gibi}")`, function (err, result) {
-      
+
+  const verificacao = await new Promise((resolve, reject) => {
+    con.query(`select nome from nomes_de_gibi where nome = '${nome_do_novo_gibi}'`, function (err, result) {
       if (err) {
-        res.json("message : 'deu errado'")
+        console.log("message : 'deu errado'")
         return reject(err)
       } else {
-        res.json("message : 'deu certo'")
+        console.log("message : 'deu certo'")
         resolve(result)
       }
-    })//fim da query
-  })//fim da promisse
-})
+    })
+    //fim da query
+  })
+  //fim da promisse
+
+  if (verificacao.length === 0) {
+    con.query(`insert into nomes_de_gibi (nome, personagem) values ("${nome_do_novo_gibi}","${nome_do_personagem_do_novo_gibi}")`, function (err) {
+      if (err) {
+        res.json({message :` erro : ${err}`})
+      } else {
+        res.json({message :"Gibi Adicionado"})
+      }
+    })
+
+  } else{
+    res.json({message :"ja tem gibi"})
+  }
+
+}) // fim da função
+
 
 
 app.listen(3000, (err) => {
   if (err) {
     console.error('ERRO!', err.message)
-  } else { console.log('http://localhost:3000'); }
+  } else { console.log('http://localhots:3000'); }
 });
