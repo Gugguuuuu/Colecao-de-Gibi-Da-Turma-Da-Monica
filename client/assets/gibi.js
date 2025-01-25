@@ -30,7 +30,7 @@ const adicionar_gibi = () => {
    let inputAdd_personagem = document.getElementById('input-add-personagem')
 
    if (inputAdd_nome.value != '' && inputAdd_personagem != '') {
-      let result = fetch(`http://localhost:3000/addgibi?nome=${inputAdd_nome.value}&personagem=${inputAdd_personagem.value}`)
+      let result = fetch(`http://supinely-vocal-dobsonfly.data-1.use1.tembo.io:5432/addgibi?nome=${inputAdd_nome.value}&personagem=${inputAdd_personagem.value}`)
          .then((result) => result.json()).then((dado) => {
             alert(dado.message)
             return dado
@@ -56,7 +56,7 @@ const verifica_gibi = () => {
    if (nomeDoGibi == '') {
       alert('Este campo é obrigatorio')
    } else {
-      var listaDeGibis = fetch(`http://localhost:3000/database?name=${nomeDoGibi}`).then((result) => result.json())
+      var listaDeGibis = fetch(`http://supinely-vocal-dobsonfly.data-1.use1.tembo.io:5432/database?name=${nomeDoGibi}`).then((result) => result.json())
          .then((dado) => {
             console.log(dado);
             resposta.textContent = `${dado}`
