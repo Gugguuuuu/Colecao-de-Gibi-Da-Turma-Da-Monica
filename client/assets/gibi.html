@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +8,40 @@
     <link rel="stylesheet" href="/client/assets/gibi.css">
     <script src="/client/assets/gibi.js" defer></script>
 </head>
-<body>
-    <header><h1><i>Coleção de gibi</i></h1></header>
 
-    <main>
+<body>
+    <header>
+        <h1>Coleção de gibi</h1>
         <section id="input-box">
             <input type="text" id="input-textGibi">
-            <button id="button-check">VERIFICAR</button>
+            <button id="button-check">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg></button>
         </section>
+    </header>
+
+    <main>
         <button class="button-Form">+</button>
     </main>
 
-    <footer><p>BY GUSTAVO OLIVEIRA LIMA</p></footer>
+    <footer>
+        <p>BY GUSTAVO OLIVEIRA LIMA</p>
+    </footer>
 
-    <section class="add-gibi-Div-box">
+    <section class="add-gibi-box">
         <div class="add-gibi-Div">
             <div class="eraserButtonDiv"><button class="eraser-Button">X</button></div>
-        
+
             <label for="nome">Nome do Gibi : </label>
-                <input class="add-gibi-Input" id="input-add-name" type="text"name = 'nome'>
+            <input class="add-gibi-Input" id="input-add-name" type="text" name='nome'>
 
             <label for="personagem">Nome do Personagem :</label>
-                <input class="add-gibi-Input" id="input-add-personagem" type="text" name = 'personagem'>
+            <input class="add-gibi-Input" id="input-add-personagem" type="text" name='personagem'>
 
             <button class="button-add-gibi">ADICIONAR</button>
         </div>
     </section>
 </body>
+
 </html>
