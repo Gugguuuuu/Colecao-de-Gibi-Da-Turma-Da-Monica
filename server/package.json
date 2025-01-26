@@ -13,6 +13,7 @@
   "author": "Gustavo Oliveira Lima",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "mysql": "^2",
     "mysql2": "^3.12.0"
