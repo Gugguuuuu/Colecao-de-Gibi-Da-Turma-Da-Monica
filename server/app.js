@@ -7,11 +7,10 @@ app.use(express.json());
 app.use(cors())//
 
 var con = mysql.createConnection({//
-  host: "supinely-vocal-dobsonfly.data-1.use1.tembo.io",
-  user: "postgres",
-  password: "ZMksQDshlrKyhbW0",
-  database: 'gibis',
-  connectTimeout: 10000
+  host: "localhost",
+  user: "root",
+  password: "Gustavo2011@#",
+  database: 'gibis'
 });
 
 con.connect((err) => {
@@ -99,8 +98,8 @@ app.get('/addgibi', async (req, res) => {
 
 
 
-app.listen(5432, (err) => {
+app.listen(3000, (err) => {
   if (err) {
     console.error('ERRO!', err.message)
-  } else { console.log('http://supinely-vocal-dobsonfly.data-1.use1.tembo.io:5432'); }
+  } else { console.log('http://localhost:3000'); }
 });
